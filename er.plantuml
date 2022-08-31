@@ -1,0 +1,66 @@
+@startuml er-diagram
+
+entity user {
+    * id
+    --
+    name
+    email
+    password
+    refresh_token
+    date_created
+    date_updated
+    balance
+}
+
+entity bike {
+    * id
+    --
+    parking_lot_id
+}
+
+entity rent {
+    * id
+    --
+    bike_id
+    user_id
+    start_at
+    finish_at
+}
+
+entity parking_lot {
+    * id
+    --
+    status
+    lock_at
+    unlock_at
+}
+
+entity transaction {
+    * id
+    --
+    type
+    amount
+    date_created
+}
+
+entity deposit {
+    * id
+    --
+    user_id
+}
+
+entity payment {
+    * id
+    --
+    rent_id
+}
+
+bike ||--|| parking_lot
+transaction }|--|{ deposit
+deposit }|--|| user
+transaction }|--|{ payment
+rent }|--|| user
+payment ||--|| rent
+rent ||--|{ bike
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml system-design
+
+actor "User" as user
+node "Bike-Rent RESTful API" {
+    component "Controller" as controller
+    component "Service" as service
+    component "Data Model" as data_model
+}
+database "MYSQL" as database
+
+user --> controller
+controller --> service
+service --> data_model
+data_model --> database
+
+@enduml
